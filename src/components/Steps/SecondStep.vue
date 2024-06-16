@@ -35,12 +35,15 @@ const birthDateLabel = isPhysical.value ? 'Data de nascimento' : 'Data de abertu
 </script>
 
 <template>
-  <div class="first-step">
+  <div class="steper-container">
     <BaseInput v-model="name" :label="nameLabel" id="email" />
     <BaseInput v-model="documentNumber" :label="documentLabel" id="documentNumber" />
     <BaseInput v-model="birthDate" :label="birthDateLabel" id="birthDate" />
     <BaseInput v-model="cellphone" label="Telefone" id="cellphone" />
-    <BaseButton label="Continuar" full-size />
+    <div class="form-actions">
+      <BaseButton label="Voltar" variant="outlined" full-size />
+      <BaseButton label="Continuar" full-size />
+    </div>
   </div>
 </template>
 

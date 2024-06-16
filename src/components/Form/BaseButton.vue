@@ -13,7 +13,7 @@ defineProps({
   variant: {
     type: String,
     default: 'fill',
-    validator: (value) => ['fill', 'outline'].includes(value)
+    validator: (value) => ['fill', 'outlined'].includes(value)
   },
   fullSize: {
     type: Boolean,
@@ -25,7 +25,11 @@ defineProps({
 <template>
   <button
     class="base-button"
-    :class="{ 'base-button--full-size': fullSize, 'base-button--fill': variant === 'fill' }"
+    :class="{
+      'base-button--full-size': fullSize,
+      'base-button--fill': variant === 'fill',
+      'base-button--outlined': variant === 'outlined'
+    }"
   >
     {{ label }}
   </button>
@@ -36,14 +40,10 @@ defineProps({
   padding: 12px 16px;
   border-radius: $rounded;
   outline: none;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   transition: 0.2s;
   font-size: 1rem;
-
-  &:hover {
-    background-color: rgba($primary, 0.8);
-  }
 }
 
 .base-button--full-size {
@@ -53,5 +53,20 @@ defineProps({
 .base-button--fill {
   background-color: $primary;
   color: $white;
+
+  &:hover {
+    background-color: rgba($primary, 0.8);
+  }
+}
+
+.base-button--outlined {
+  background-color: transparent;
+  color: $primary;
+  border-color: $primary;
+
+  &:hover {
+    border-color: rgba($primary, 0.8);
+    color: rgba($primary, 0.8);
+  }
 }
 </style>

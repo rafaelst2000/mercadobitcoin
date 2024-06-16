@@ -40,7 +40,7 @@ const personTypes = [
 </script>
 
 <template>
-  <div class="first-step">
+  <div class="steper-container">
     <BaseInput v-model="email" label="Endereço de e-mail" type="email" id="email" />
     <BaseRadio v-model="personType" :options="personTypes" name="personType" />
     <BaseButton label="Continuar" full-size />

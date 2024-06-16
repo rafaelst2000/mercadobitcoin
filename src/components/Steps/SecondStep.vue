@@ -12,7 +12,7 @@ const props = defineProps({
 })
 const { user } = toRefs(props)
 
-const customGetter = (key) =>
+const customComputed = (key) =>
   computed({
     get() {
       return user?.value?.[key]
@@ -23,10 +23,10 @@ const customGetter = (key) =>
     }
   })
 
-const name = customGetter('name')
-const documentNumber = customGetter('documentNumber')
-const birthDate = customGetter('birthDate')
-const cellphone = customGetter('cellphone')
+const name = customComputed('name')
+const documentNumber = customComputed('documentNumber')
+const birthDate = customComputed('birthDate')
+const cellphone = customComputed('cellphone')
 
 const isPhysical = computed(() => user?.value?.personType === 'physical')
 const nameLabel = isPhysical.value ? 'Nome' : 'Razão social'

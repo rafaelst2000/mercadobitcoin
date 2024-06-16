@@ -13,25 +13,19 @@ const props = defineProps({
 })
 const { user } = toRefs(props)
 
-const email = computed({
-  get() {
-    return user?.value?.email
-  },
-  set(value) {
-    const updatedUser = { ...user.value, email: value }
-    emit('update:user', updatedUser)
-  }
-})
+const customComputed = (key) =>
+  computed({
+    get() {
+      return user?.value?.[key]
+    },
+    set(value) {
+      const updatedUser = { ...user.value, [key]: value }
+      emit('update:user', updatedUser)
+    }
+  })
 
-const personType = computed({
-  get() {
-    return user?.value?.personType
-  },
-  set(value) {
-    const updatedUser = { ...user.value, personType: value }
-    emit('update:user', updatedUser)
-  }
-})
+const email = customComputed('name')
+const personType = customComputed('personType')
 
 const personTypes = [
   { label: 'Física', value: 'fisical' },

@@ -15,6 +15,10 @@ defineProps({
   id: {
     type: String,
     default: ''
+  },
+  errorMessages: {
+    type: String,
+    default: ''
   }
 })
 </script>
@@ -27,8 +31,10 @@ defineProps({
       :type="type"
       :value="modelValue"
       v-bind="$attrs"
+      :class="{ 'base-input--error': !!errorMessages }"
       @input="$emit('update:modelValue', $event.target.value)"
     />
+    <p>{{ errorMessages }}</p>
   </div>
 </template>
 
@@ -54,6 +60,17 @@ defineProps({
     &:focus {
       border-color: $primary;
     }
+  }
+
+  .base-input--error,
+  .base-input--error:focus {
+    border-color: $error;
+  }
+
+  p {
+    font-size: 0.875rem;
+    margin: 4px 8px 0;
+    color: $error;
   }
 }
 </style>

@@ -8,6 +8,10 @@ const props = defineProps({
   user: {
     type: Object,
     default: () => {}
+  },
+  validations: {
+    type: Object,
+    default: () => {}
   }
 })
 const { email, personType } = useSteps(props, emit)
@@ -19,7 +23,13 @@ const personTypes = [
 
 <template>
   <div class="steper-container">
-    <BaseInput v-model="email" label="Endereço de e-mail" type="email" id="email" />
+    <BaseInput
+      :error-messages="validations.email.$error ? 'Insira um e-mail válido' : ''"
+      v-model="email"
+      label="Endereço de e-mail"
+      type="email"
+      id="email"
+    />
     <BaseRadio v-model="personType" :options="personTypes" name="personType" />
   </div>
 </template>

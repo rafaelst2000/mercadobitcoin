@@ -4,8 +4,11 @@ import SecondStep from '@/components/Steps/SecondStep.vue'
 import ThirdStep from '@/components/Steps/ThirdStep.vue'
 import FinalStep from '@/components/Steps/FinalStep.vue'
 import ActionButtons from '@/components/ActionButtons.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import useVuelidate from '@vuelidate/core'
+import { required, email } from '@vuelidate/validators'
 
+// User data
 const user = ref({
   email: '',
   personType: 'fisical',
@@ -16,19 +19,27 @@ const user = ref({
   password: '',
   confirmPassword: ''
 })
+
 const currentStep = ref(0)
+const vuelidateRules = computed(() => ({
+  email: { required, email }
+}))
+const v$ = useVuelidate(vuelidateRules, user)
+
 const stepsComponents = {
   0: FirstStep,
   1: SecondStep,
   2: ThirdStep,
   3: FinalStep
 }
-const stepLabels = {
+
+const stepLabels = computed(() => ({
   0: 'Seja bem vindo(a)',
   1: user.value.personType === 'fisical' ? 'Pessoa Física' : 'Pessoa Jurídica',
   2: 'Senha de acesso',
   3: 'Revise suas informações'
-}
+}))
+
 const buttonsLabels = [
   {
     primary: 'Continuar',
@@ -48,12 +59,17 @@ const buttonsLabels = [
   }
 ]
 
-const handleClickPrimaryButton = () => {
+const handleClickPrimaryButton = async () => {
+  v$.value.$touch()
+  const isValid = await v$.value.$validate()
+  if (!isValid) return
   currentStep.value++
 }
 
 const handleClickSecondaryButton = () => {
-  currentStep.value--
+  if (currentStep.value > 0) {
+    currentStep.value--
+  }
 }
 </script>
 
@@ -68,6 +84,7 @@ const handleClickSecondaryButton = () => {
         <component
           :is="stepsComponents[currentStep]"
           v-model:user="user"
+          :validations="v$"
           @primary-click="handleClickPrimaryButton"
           @secondary-click="handleClickSecondaryButton"
         />

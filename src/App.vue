@@ -17,5 +17,11 @@ import RegistrationPage from './pages/RegistrationPage.vue'
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 20px;
+  margin-top: 0.875rem;
+}
+
+.form-actions-single {
+  width: 100%;
+  margin-top: 0.875rem;
 }
 </style>

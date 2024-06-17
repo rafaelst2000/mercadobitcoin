@@ -1,8 +1,7 @@
 <script setup>
 import BaseInput from '../Form/BaseInput.vue'
-import BaseButton from '../Form/BaseButton.vue'
 import BaseRadio from '../Form/BaseRadio.vue'
-import { computed, toRefs } from 'vue'
+import { useSteps } from '../../composables/useSteps'
 
 const emit = defineEmits(['update:user'])
 const props = defineProps({
@@ -11,22 +10,7 @@ const props = defineProps({
     default: () => {}
   }
 })
-const { user } = toRefs(props)
-
-const customComputed = (key) =>
-  computed({
-    get() {
-      return user?.value?.[key]
-    },
-    set(value) {
-      const updatedUser = { ...user.value, [key]: value }
-      emit('update:user', updatedUser)
-    }
-  })
-
-const email = customComputed('name')
-const personType = customComputed('personType')
-
+const { email, personType } = useSteps(props, emit)
 const personTypes = [
   { label: 'Física', value: 'fisical' },
   { label: 'Jurídica', value: 'legal' }
@@ -37,14 +21,5 @@ const personTypes = [
   <div class="steper-container">
     <BaseInput v-model="email" label="Endereço de e-mail" type="email" id="email" />
     <BaseRadio v-model="personType" :options="personTypes" name="personType" />
-    <BaseButton label="Continuar" full-size />
   </div>
 </template>
-
-<style scoped lang="scss">
-.first-step {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-}
-</style>

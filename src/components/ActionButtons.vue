@@ -24,13 +24,11 @@ defineProps({
       v-if="secondaryLabel"
       :label="secondaryLabel"
       variant="outlined"
-      full-size
       :is-disabled="isDisabled"
       @click.prevent="emit('secondaryClick')"
     />
     <BaseButton
       :label="primaryLabel"
-      full-size
       :is-disabled="isDisabled"
       @click.prevent="emit('primaryClick')"
     />

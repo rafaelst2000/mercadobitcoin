@@ -157,7 +157,6 @@ const createUser = async () => {
         <ActionButtons
           :primary-label="buttonsLabels[currentStep].primary"
           :secondary-label="buttonsLabels[currentStep].secondary"
-          full-size
           :is-disabled="isDisabled"
           @primary-click="handleClickPrimaryButton"
           @secondary-click="handleClickSecondaryButton"

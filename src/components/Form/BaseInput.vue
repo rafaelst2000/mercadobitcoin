@@ -20,7 +20,7 @@ const props = defineProps({
   },
   id: {
     type: String,
-    default: ''
+    required: true
   },
   errorMessages: {
     type: String,

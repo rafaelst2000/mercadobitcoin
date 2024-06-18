@@ -5,19 +5,10 @@ defineProps({
     default: '',
     required: true
   },
-  type: {
-    type: String,
-    default: 'button',
-    validator: (value) => ['button', 'submit'].includes(value)
-  },
   variant: {
     type: String,
     default: 'fill',
     validator: (value) => ['fill', 'outlined'].includes(value)
-  },
-  fullSize: {
-    type: Boolean,
-    default: false
   },
   isDisabled: {
     type: Boolean,
@@ -31,7 +22,6 @@ defineProps({
     class="base-button"
     :disabled="isDisabled"
     :class="{
-      'base-button--full-size': fullSize,
       'base-button--fill': variant === 'fill',
       'base-button--outlined': variant === 'outlined'
     }"
@@ -49,16 +39,13 @@ defineProps({
   cursor: pointer;
   transition: 0.2s;
   font-size: 1rem;
+  width: 100%;
 
   &:disabled,
   &:disabled:hover {
     background-color: rgba($primary, 0.5);
     cursor: not-allowed;
   }
-}
-
-.base-button--full-size {
-  width: 100%;
 }
 
 .base-button--fill {

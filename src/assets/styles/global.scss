@@ -47,6 +47,9 @@ h6 {
 }
 
 @media (max-width: 768px) {
+  html {
+    font-size: 80% !important;
+  }
   .form-actions {
     grid-template-columns: 1fr;
     gap: 0.875rem;

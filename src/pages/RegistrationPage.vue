@@ -175,7 +175,7 @@ main {
 
   .registration {
     width: 100%;
-    max-width: 360px;
+    max-width: 420px;
     padding: 0.875rem;
     .registration__step {
       font-size: 1rem;
@@ -186,7 +186,7 @@ main {
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin: 0.5rem 0 1.5rem;
     }
   }

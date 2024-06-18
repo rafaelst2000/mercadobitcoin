@@ -5,3 +5,7 @@ import RegistrationPage from './pages/RegistrationPage.vue'
 <template>
   <RegistrationPage />
 </template>
+
+<style lang="scss">
+@import '@/assets/styles/global.scss';
+</style>

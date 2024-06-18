@@ -7,21 +7,22 @@ import ActionButtons from '@/components/ActionButtons.vue'
 import { ref, computed } from 'vue'
 import { required, email, minLength, sameAs } from '@vuelidate/validators'
 import { validateCpf, validateCnpj, validateBirthDate } from '@/helpers/customValidators'
+import { useFetch } from '@/composables/useFetch'
 import useVuelidate from '@vuelidate/core'
 
 const user = ref({
-  email: '',
+  email: 'teste@gmail.com',
   personType: 'fisical',
-  name: '',
-  documentNumber: '',
-  birthDate: '',
-  cellphone: '',
-  password: '',
-  confirmPassword: ''
+  name: 'Rafael',
+  documentNumber: '035.853.200-07',
+  birthDate: '12/12/2000',
+  cellphone: '(51) 99657-0130',
+  password: '12345678',
+  confirmPassword: '12345678'
 })
 const isFisical = computed(() => user.value.personType === 'fisical')
 
-const currentStep = ref(0)
+const currentStep = ref(3)
 const vuelidateRules = computed(() => {
   const rules = {
     0: {
@@ -105,7 +106,17 @@ const handleClickSecondaryButton = () => {
 }
 
 const createUser = async () => {
-  console.log('create user', user.value)
+  try {
+    const { data, error } = await useFetch({
+      url: '/registration',
+      method: 'POST',
+      body: user.value
+    })
+    console.log('data', data.value)
+    console.log('error', error.value)
+  } catch (error) {
+    console.log('error', error)
+  }
 }
 </script>
 

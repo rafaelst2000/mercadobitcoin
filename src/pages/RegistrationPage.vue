@@ -27,7 +27,10 @@ const vuelidateRules = computed(() => {
     },
     1: {
       name: { required, minLength: minLength(3) },
-      documentNumber: { required, minLength: minLength(14) },
+      documentNumber: {
+        required,
+        minLength: minLength(user.value.personType === 'fisical' ? 14 : 18)
+      },
       birthDate: { required, minLength: minLength(10) },
       cellphone: { required, minLength: minLength(15) }
     },

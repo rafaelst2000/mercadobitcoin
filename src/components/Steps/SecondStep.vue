@@ -25,9 +25,9 @@ const {
   isFisical
 } = useSteps(props, emit)
 
-const documentNumberErrorMessage = computed(() =>
-  isFisical ? 'Insira um CPF válido' : 'Insira um CNPJ válido'
-)
+const documentNumberErrorMessage = computed(() => {
+  return isFisical.value ? 'Insira um CPF válido' : 'Insira um CNPJ válido'
+})
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup>
 import { mask } from 'vue-the-mask'
+defineEmits(['update:modelValue'])
 const props = defineProps({
   modelValue: {
     type: String,
@@ -42,12 +43,12 @@ const selectedMask = masks[props.variant]
     <label :for="id">{{ label }}</label>
     <input
       :id="id"
+      v-mask="selectedMask"
       :type="type"
       :value="modelValue"
       v-bind="$attrs"
       :class="{ 'base-input--error': !!errorMessages }"
       @input="$emit('update:modelValue', $event.target.value)"
-      v-mask="selectedMask"
     />
     <p>{{ errorMessages }}</p>
   </div>

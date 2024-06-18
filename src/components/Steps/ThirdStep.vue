@@ -19,9 +19,9 @@ const { password } = useSteps(props, emit)
 <template>
   <div class="steper-container">
     <BaseInput
+      id="password"
       v-model="password"
       label="Sua senha"
-      id="password"
       type="password"
       :error-messages="
         validations.password.$error ? 'Insira uma senha com no mínimo 8 dígitos' : ''

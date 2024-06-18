@@ -24,10 +24,10 @@ const personTypes = [
 <template>
   <div class="steper-container">
     <BaseInput
-      :error-messages="validations.email.$error ? 'Insira um e-mail válido' : ''"
-      v-model="email"
-      label="Endereço de e-mail"
       id="email"
+      v-model="email"
+      :error-messages="validations.email.$error ? 'Insira um e-mail válido' : ''"
+      label="Endereço de e-mail"
     />
     <BaseRadio v-model="personType" :options="personTypes" name="personType" />
   </div>

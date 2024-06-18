@@ -1,4 +1,5 @@
 <script setup>
+defineEmits(['update:modelValue'])
 defineProps({
   options: {
     type: Array,
@@ -17,10 +18,10 @@ defineProps({
 
 <template>
   <div class="radio-buttons">
-    <div class="radio-buttons__container" v-for="option in options" :key="option.value">
+    <div v-for="option in options" :key="option.value" class="radio-buttons__container">
       <input
-        type="radio"
         :id="`radio-button-${option.value}`"
+        type="radio"
         :name="name"
         :value="option.value"
         :checked="option.value === modelValue"

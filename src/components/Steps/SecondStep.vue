@@ -33,30 +33,30 @@ const documentNumberErrorMessage = computed(() => {
 <template>
   <div class="steper-container">
     <BaseInput
+      id="name"
       v-model="name"
       :label="nameLabel"
-      id="name"
       :error-messages="validations.name.$error ? 'Insira um nome' : ''"
     />
     <BaseInput
-      :variant="isFisical ? 'cpf' : 'cnpj'"
+      id="documentNumber"
       v-model="documentNumber"
+      :variant="isFisical ? 'cpf' : 'cnpj'"
       :label="documentLabel"
       :error-messages="validations.documentNumber.$error ? documentNumberErrorMessage : ''"
-      id="documentNumber"
     />
     <BaseInput
-      variant="date"
-      v-model="birthDate"
-      :label="birthDateLabel"
       id="birthDate"
+      v-model="birthDate"
+      variant="date"
+      :label="birthDateLabel"
       :error-messages="validations.birthDate.$error ? 'Insira uma data válida' : ''"
     />
     <BaseInput
-      variant="cellphone"
-      v-model="cellphone"
-      label="Telefone"
       id="cellphone"
+      v-model="cellphone"
+      variant="cellphone"
+      label="Telefone"
       :error-messages="validations.cellphone.$error ? 'Insira um telefone' : ''"
     />
   </div>

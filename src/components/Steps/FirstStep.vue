@@ -14,6 +14,7 @@ const props = defineProps({
     default: () => {}
   }
 })
+
 const { email, personType } = useSteps(props, emit)
 const personTypes = [
   { label: 'Física', value: 'fisical' },

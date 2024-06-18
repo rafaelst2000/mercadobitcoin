@@ -14,6 +14,7 @@ const props = defineProps({
     default: () => {}
   }
 })
+
 const {
   name,
   documentNumber,

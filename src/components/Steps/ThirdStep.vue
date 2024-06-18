@@ -13,6 +13,7 @@ const props = defineProps({
     default: () => {}
   }
 })
+
 const { password } = useSteps(props, emit)
 </script>
 

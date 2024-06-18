@@ -14,6 +14,7 @@ const props = defineProps({
     default: () => {}
   }
 })
+
 const {
   email,
   name,
@@ -26,6 +27,7 @@ const {
   confirmPassword,
   isFisical
 } = useSteps(props, emit)
+
 const documentNumberErrorMessage = computed(() =>
   isFisical ? 'Insira um CPF válido' : 'Insira um CNPJ válido'
 )

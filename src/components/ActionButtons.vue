@@ -1,5 +1,6 @@
 <script setup>
 import BaseButton from './Form/BaseButton.vue'
+
 const emit = defineEmits(['primaryClick', 'secondaryClick'])
 defineProps({
   primaryLabel: {

@@ -18,6 +18,10 @@ defineProps({
   fullSize: {
     type: Boolean,
     default: false
+  },
+  isDisabled: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -25,6 +29,7 @@ defineProps({
 <template>
   <button
     class="base-button"
+    :disabled="isDisabled"
     :class="{
       'base-button--full-size': fullSize,
       'base-button--fill': variant === 'fill',
@@ -44,6 +49,12 @@ defineProps({
   cursor: pointer;
   transition: 0.2s;
   font-size: 1rem;
+
+  &:disabled,
+  &:disabled:hover {
+    background-color: rgba($primary, 0.5);
+    cursor: not-allowed;
+  }
 }
 
 .base-button--full-size {
@@ -67,6 +78,13 @@ defineProps({
   &:hover {
     border-color: rgba($primary, 0.8);
     color: rgba($primary, 0.8);
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    border-color: rgba($primary, 0.5);
+    color: rgba($primary, 0.5);
+    background-color: transparent;
   }
 }
 </style>

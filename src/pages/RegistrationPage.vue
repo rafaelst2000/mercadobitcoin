@@ -8,21 +8,25 @@ import { ref, computed } from 'vue'
 import { required, email, minLength, sameAs } from '@vuelidate/validators'
 import { validateCpf, validateCnpj, validateBirthDate } from '@/helpers/customValidators'
 import { useFetch } from '@/composables/useFetch'
+import { toast } from 'vue3-toastify'
 import useVuelidate from '@vuelidate/core'
 
-const user = ref({
-  email: 'teste@gmail.com',
+const defaultUser = {
+  email: '',
   personType: 'fisical',
-  name: 'Rafael',
-  documentNumber: '035.853.200-07',
-  birthDate: '12/12/2000',
-  cellphone: '(51) 99657-0130',
-  password: '12345678',
-  confirmPassword: '12345678'
-})
-const isFisical = computed(() => user.value.personType === 'fisical')
+  name: '',
+  documentNumber: '',
+  birthDate: '',
+  cellphone: '',
+  password: '',
+  confirmPassword: ''
+}
 
-const currentStep = ref(3)
+const user = ref({ ...defaultUser })
+const currentStep = ref(0)
+const isDisabled = ref(false)
+
+const isFisical = computed(() => user.value.personType === 'fisical')
 const vuelidateRules = computed(() => {
   const rules = {
     0: {
@@ -106,16 +110,31 @@ const handleClickSecondaryButton = () => {
 }
 
 const createUser = async () => {
+  const { fetchData } = useFetch({
+    url: '/registration',
+    method: 'POST',
+    body: user.value
+  })
+
   try {
-    const { data, error } = await useFetch({
-      url: '/registration',
-      method: 'POST',
-      body: user.value
+    isDisabled.value = true
+    const userId = await fetchData()
+    console.log('createdUserId', userId)
+    toast.success('Usuário criado com sucesso!', {
+      onClose: () => {
+        currentStep.value = 0
+        isDisabled.value = false
+        user.value = { ...defaultUser }
+        v$.value.$reset()
+      }
     })
-    console.log('data', data.value)
-    console.log('error', error.value)
   } catch (error) {
-    console.log('error', error)
+    console.log(error)
+    toast.error('Houve um erro ao criar usuário.', {
+      onClose: () => {
+        isDisabled.value = false
+      }
+    })
   }
 }
 </script>
@@ -139,10 +158,10 @@ const createUser = async () => {
           :primary-label="buttonsLabels[currentStep].primary"
           :secondary-label="buttonsLabels[currentStep].secondary"
           full-size
+          :is-disabled="isDisabled"
           @primary-click="handleClickPrimaryButton"
           @secondary-click="handleClickSecondaryButton"
         />
-        <!-- @submit.prevent="handleSubmitForm" -->
       </form>
     </section>
   </main>

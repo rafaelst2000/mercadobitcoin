@@ -10,6 +10,10 @@ defineProps({
   secondaryLabel: {
     type: String,
     default: ''
+  },
+  isDisabled: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -21,9 +25,15 @@ defineProps({
       :label="secondaryLabel"
       variant="outlined"
       full-size
+      :is-disabled="isDisabled"
       @click.prevent="emit('secondaryClick')"
     />
-    <BaseButton :label="primaryLabel" full-size @click.prevent="emit('primaryClick')" />
+    <BaseButton
+      :label="primaryLabel"
+      full-size
+      :is-disabled="isDisabled"
+      @click.prevent="emit('primaryClick')"
+    />
   </div>
 </template>
 

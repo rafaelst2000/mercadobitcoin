@@ -1,27 +1,28 @@
-import { ref } from 'vue'
-
 export function useFetch({ url, method = 'GET', body = null }) {
-  const data = ref(null)
-  const error = ref(null)
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(url, {
+  const fetchData = () => {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
         method,
         body: body ? JSON.stringify(body) : undefined,
         headers: { 'Content-Type': 'application/json' }
       })
-
-      if (!response.ok) {
-        throw new Error()
-      }
-
-      const json = await response.json()
-      data.value = json
-    } catch (err) {
-      error.value = err
-    }
+        .then((response) => {
+          if (!response.ok) {
+            return response.json().then((err) => {
+              throw new Error(err.message)
+            })
+          }
+          return response.json()
+        })
+        .then((json) => {
+          const userId = json.userId
+          resolve(userId)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   }
-  fetchData()
-  return { data, error }
+
+  return { fetchData }
 }

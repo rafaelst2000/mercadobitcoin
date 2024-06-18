@@ -94,13 +94,18 @@ const handleClickPrimaryButton = async () => {
   v$.value.$touch()
   const isValid = await v$.value.$validate()
   if (!isValid) return
-  currentStep.value++
+  if (currentStep.value === 3) await createUser()
+  else currentStep.value++
 }
 
 const handleClickSecondaryButton = () => {
   if (currentStep.value > 0) {
     currentStep.value--
   }
+}
+
+const createUser = async () => {
+  console.log('create user', user.value)
 }
 </script>
 

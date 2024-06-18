@@ -34,28 +34,8 @@ h6 {
   gap: 0.875rem;
 }
 
-.form-actions {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 1.25rem;
-  margin-top: 0.875rem;
-}
-
-.form-actions-single {
-  width: 100%;
-  margin-top: 0.875rem;
-}
-
 @media (max-width: 768px) {
   html {
     font-size: 80% !important;
-  }
-  .form-actions {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-
-    & button:first-child {
-      order: 1;
-    }
   }
 }

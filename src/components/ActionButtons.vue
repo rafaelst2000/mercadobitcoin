@@ -37,4 +37,27 @@ defineProps({
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.form-actions {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 0.875rem;
+  margin-top: 0.875rem;
+}
+
+.form-actions-single {
+  width: 100%;
+  margin-top: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .form-actions {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+
+    & button:first-child {
+      order: 1;
+    }
+  }
+}
+</style>

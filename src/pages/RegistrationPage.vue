@@ -6,6 +6,7 @@ import FinalStep from '@/components/Steps/FinalStep.vue'
 import ActionButtons from '@/components/ActionButtons.vue'
 import { ref, computed } from 'vue'
 import { required, email, minLength, sameAs } from '@vuelidate/validators'
+import { validateCpf, validateCnpj, validateBirthDate } from '@/helpers/customValidators'
 import useVuelidate from '@vuelidate/core'
 
 const user = ref({
@@ -18,6 +19,7 @@ const user = ref({
   password: '',
   confirmPassword: ''
 })
+const isFisical = computed(() => user.value.personType === 'fisical')
 
 const currentStep = ref(0)
 const vuelidateRules = computed(() => {
@@ -29,9 +31,10 @@ const vuelidateRules = computed(() => {
       name: { required, minLength: minLength(3) },
       documentNumber: {
         required,
-        minLength: minLength(user.value.personType === 'fisical' ? 14 : 18)
+        minLength: minLength(isFisical.value ? 14 : 18),
+        custom: isFisical.value ? validateCpf : validateCnpj
       },
-      birthDate: { required, minLength: minLength(10) },
+      birthDate: { required, minLength: minLength(10), custom: validateBirthDate },
       cellphone: { required, minLength: minLength(15) }
     },
     2: {
@@ -40,8 +43,12 @@ const vuelidateRules = computed(() => {
     3: {
       email: { required, email },
       name: { required, minLength: minLength(3) },
-      documentNumber: { required, minLength: minLength(14) },
-      birthDate: { required, minLength: minLength(10) },
+      documentNumber: {
+        required,
+        minLength: minLength(isFisical.value ? 14 : 18),
+        custom: isFisical.value ? validateCpf : validateCnpj
+      },
+      birthDate: { required, minLength: minLength(10), custom: validateBirthDate },
       cellphone: { required, minLength: minLength(15) },
       confirmPassword: { required, minLength: minLength(8), sameAs: sameAs(user.value.password) }
     }
@@ -59,7 +66,7 @@ const stepsComponents = {
 
 const stepLabels = computed(() => ({
   0: 'Seja bem vindo(a)',
-  1: user.value.personType === 'fisical' ? 'Pessoa Física' : 'Pessoa Jurídica',
+  1: isFisical.value ? 'Pessoa Física' : 'Pessoa Jurídica',
   2: 'Senha de acesso',
   3: 'Revise suas informações'
 }))

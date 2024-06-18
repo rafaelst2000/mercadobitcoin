@@ -1,35 +1,48 @@
-# mercadobitcoin
+<div align="center">
+  
+&nbsp;
 
-This template should help get you started developing with Vue 3 in Vite.
+![Node_Badge][node_version_badge] ![vue_badge][vue_badge] ![javascript][javascript] ![sass][sass] ![vite][vite]
 
-## Recommended IDE Setup
+</div>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## **:rocket: Objetivo**
 
-## Customize configuration
+Este projeto foi desenvolvido como **desafio técnico** da empresa **Mercado Bitcoin**. Consiste em uma aplicação web responsiva para cadastro de usuários.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## **:computer: Tecnologias**
 
-## Project Setup
+- **Vue 3 - Framework Front-end**
+- **Javascript - Linguagem**
+- **Scss - Estilos**
+- **Express - Server**
+- **date-fns - Formatação de data**
+- **Vuelidate - Validação de formulário**
+- **Vue-the-mask - Máscara para inputs**
+
+## **⚡Executando o projeto em ambiente local**
 
 ```sh
+git clone https://github.com/rafaelst2000/mercadobitcoin.git
+cd mercadobitcoin
 npm install
+npm run start
+acesse http://localhost:3000/registration pelo seu navegador.
 ```
 
-### Compile and Hot-Reload for Development
+## **📩 Commits**
 
-```sh
-npm run dev
-```
+- Seguindo o padrão do _Conventional Commits_
 
-### Compile and Minify for Production
+<br /> <br />
+<div align="center">
+  Made by <a href="https://www.linkedin.com/in/rafaelst2000/" target="_blank">Rafael Trevisan</a>
+</div>
 
-```sh
-npm run build
-```
+<!-- Badges -->
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+[node_version_badge]: https://img.shields.io/badge/Node-20.14.0-green
+[vue_badge]: https://img.shields.io/badge/Web-Vue3-green
+[javascript]: https://img.shields.io/badge/JS-Javascript-yellow
+[sass]: https://img.shields.io/badge/CSS-SCSS-pink
+[vite]: https://img.shields.io/badge/Vite-5.2.8-purple

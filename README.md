@@ -22,6 +22,8 @@ Este projeto foi desenvolvido como **desafio técnico** da empresa **Mercado Bit
 
 ## **⚡Executando o projeto em ambiente local**
 
+### Necessário ter o NodeJS 20 instalado!
+
 ```sh
 git clone https://github.com/rafaelst2000/mercadobitcoin.git
 cd mercadobitcoin

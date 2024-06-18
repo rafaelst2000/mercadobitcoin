@@ -190,6 +190,12 @@ main {
       margin: 0.5rem 0 1.5rem;
     }
   }
+
+  .steper-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
 }
 
 @media (max-width: 768px) {

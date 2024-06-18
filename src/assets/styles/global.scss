@@ -28,12 +28,6 @@ h6 {
   font-weight: $font-bold;
 }
 
-.steper-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-}
-
 @media (max-width: 768px) {
   html {
     font-size: 80% !important;

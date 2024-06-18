@@ -37,7 +37,7 @@ h6 {
 .form-actions {
   display: grid;
   grid-template-columns: 2fr 3fr;
-  gap: 20px;
+  gap: 1.25rem;
   margin-top: 0.875rem;
 }
 
@@ -47,10 +47,6 @@ h6 {
 }
 
 @media (max-width: 768px) {
-  html {
-    font-size: 12px;
-  }
-
   .form-actions {
     grid-template-columns: 1fr;
     gap: 0.875rem;

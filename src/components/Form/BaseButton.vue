@@ -37,7 +37,7 @@ defineProps({
 
 <style scoped lang="scss">
 .base-button {
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
   border-radius: $rounded;
   outline: none;
   border: 2px solid transparent;

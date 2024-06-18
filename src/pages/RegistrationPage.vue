@@ -21,7 +21,7 @@ const user = ref({
 })
 const isFisical = computed(() => user.value.personType === 'fisical')
 
-const currentStep = ref(3)
+const currentStep = ref(0)
 const vuelidateRules = computed(() => {
   const rules = {
     0: {
@@ -139,11 +139,13 @@ const createUser = async () => {
 
 <style scoped lang="scss">
 main {
-  padding: 32px 0;
+  padding: 1rem 0;
   display: flex;
   justify-content: center;
 
   .registration {
+    width: 100%;
+    max-width: 360px;
     padding: 0.875rem;
     .registration__step {
       font-size: 1rem;
@@ -153,13 +155,17 @@ main {
       }
     }
 
-    form {
-      max-width: 360px;
-    }
-
     h1 {
       font-size: 2.5rem;
       margin: 0.5rem 0 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    .registration {
+      max-width: 100%;
     }
   }
 }

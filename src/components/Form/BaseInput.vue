@@ -66,7 +66,7 @@ const selectedMask = masks[props.variant]
 
   input {
     width: 100%;
-    padding: 8px 12px;
+    padding: 0.5rem 0.75rem;
     border-radius: $rounded;
     border: 1px solid $black;
     outline: none;

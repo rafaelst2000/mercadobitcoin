@@ -38,7 +38,7 @@ defineProps({
   gap: 0.875rem;
 
   .radio-buttons__container {
-    padding: 8px 12px;
+    padding: 0.5rem 0.75rem;
     display: flex;
     align-items: center;
     gap: 0.25rem;

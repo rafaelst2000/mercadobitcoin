@@ -1,5 +1,5 @@
 <div align="center">
-  
+<img src="./public/lighthouse.png"/>
 &nbsp;
 
 ![Node_Badge][node_version_badge] ![vue_badge][vue_badge] ![javascript][javascript] ![sass][sass] ![vite][vite]
@@ -34,7 +34,12 @@ acesse http://localhost:3000/registration pelo seu navegador.
 
 - Seguindo o padrão do _Conventional Commits_
 
-<br /> <br />
+## **📝 Anotações**
+
+O Accessibility do lighthouse não bateu nota 100 por causa do contraste no botão de ação, onde o fundo era laranja e a cor do texto branca.
+Optei por seguir o design nesse caso ao invés de buscar uma cor para bater nota 100.
+
+<br />
 <div align="center">
   Made by <a href="https://www.linkedin.com/in/rafaelst2000/" target="_blank">Rafael Trevisan</a>
 </div>

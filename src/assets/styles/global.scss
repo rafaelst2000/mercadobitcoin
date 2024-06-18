@@ -27,3 +27,36 @@ h5,
 h6 {
   font-weight: $font-bold;
 }
+
+.steper-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.form-actions {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 20px;
+  margin-top: 0.875rem;
+}
+
+.form-actions-single {
+  width: 100%;
+  margin-top: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+
+  .form-actions {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+
+    & button:first-child {
+      order: 1;
+    }
+  }
+}

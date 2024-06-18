@@ -21,7 +21,7 @@ const user = ref({
 })
 const isFisical = computed(() => user.value.personType === 'fisical')
 
-const currentStep = ref(0)
+const currentStep = ref(3)
 const vuelidateRules = computed(() => {
   const rules = {
     0: {
@@ -144,6 +144,7 @@ main {
   justify-content: center;
 
   .registration {
+    padding: 0.875rem;
     .registration__step {
       font-size: 1rem;
 
@@ -153,7 +154,7 @@ main {
     }
 
     form {
-      width: 360px;
+      max-width: 360px;
     }
 
     h1 {

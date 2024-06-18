@@ -7,6 +7,10 @@ const props = defineProps({
   user: {
     type: Object,
     default: () => {}
+  },
+  validations: {
+    type: Object,
+    default: () => {}
   }
 })
 const { password } = useSteps(props, emit)
@@ -14,6 +18,14 @@ const { password } = useSteps(props, emit)
 
 <template>
   <div class="steper-container">
-    <BaseInput v-model="password" label="Sua senha" type="password" id="password" />
+    <BaseInput
+      v-model="password"
+      label="Sua senha"
+      id="password"
+      type="password"
+      :error-messages="
+        validations.password.$error ? 'Insira uma senha com no mínimo 8 dígitos' : ''
+      "
+    />
   </div>
 </template>

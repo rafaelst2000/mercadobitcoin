@@ -5,10 +5,9 @@ import ThirdStep from '@/components/Steps/ThirdStep.vue'
 import FinalStep from '@/components/Steps/FinalStep.vue'
 import ActionButtons from '@/components/ActionButtons.vue'
 import { ref, computed } from 'vue'
+import { required, email, minLength, sameAs } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
-import { required, email } from '@vuelidate/validators'
 
-// User data
 const user = ref({
   email: '',
   personType: 'fisical',
@@ -21,9 +20,31 @@ const user = ref({
 })
 
 const currentStep = ref(0)
-const vuelidateRules = computed(() => ({
-  email: { required, email }
-}))
+const vuelidateRules = computed(() => {
+  const rules = {
+    0: {
+      email: { required, email }
+    },
+    1: {
+      name: { required, minLength: minLength(3) },
+      documentNumber: { required, minLength: minLength(14) },
+      birthDate: { required, minLength: minLength(10) },
+      cellphone: { required, minLength: minLength(15) }
+    },
+    2: {
+      password: { required, minLength: minLength(8) }
+    },
+    3: {
+      email: { required, email },
+      name: { required, minLength: minLength(3) },
+      documentNumber: { required, minLength: minLength(14) },
+      birthDate: { required, minLength: minLength(10) },
+      cellphone: { required, minLength: minLength(15) },
+      confirmPassword: { required, minLength: minLength(8), sameAs: sameAs(user.value.password) }
+    }
+  }
+  return rules[currentStep.value]
+})
 const v$ = useVuelidate(vuelidateRules, user)
 
 const stepsComponents = {

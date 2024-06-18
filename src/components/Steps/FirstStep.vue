@@ -27,7 +27,6 @@ const personTypes = [
       :error-messages="validations.email.$error ? 'Insira um e-mail válido' : ''"
       v-model="email"
       label="Endereço de e-mail"
-      type="email"
       id="email"
     />
     <BaseRadio v-model="personType" :options="personTypes" name="personType" />

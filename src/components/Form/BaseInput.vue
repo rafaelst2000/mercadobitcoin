@@ -1,5 +1,6 @@
 <script setup>
-defineProps({
+import { mask } from 'vue-the-mask'
+const props = defineProps({
   modelValue: {
     type: String,
     required: true
@@ -7,6 +8,11 @@ defineProps({
   label: {
     type: String,
     default: ''
+  },
+  variant: {
+    type: String,
+    default: '',
+    validator: (value) => ['', 'cpf', 'cnpj', 'cellphone', 'date'].includes(value)
   },
   type: {
     type: String,
@@ -21,6 +27,14 @@ defineProps({
     default: ''
   }
 })
+const vMask = props.variant ? mask : undefined
+const masks = {
+  cpf: '###.###.###-##',
+  cnpj: '##.###.###/####-##',
+  cellphone: '(##) #####-####',
+  date: '##/##/####'
+}
+const selectedMask = masks[props.variant]
 </script>
 
 <template>
@@ -33,6 +47,7 @@ defineProps({
       v-bind="$attrs"
       :class="{ 'base-input--error': !!errorMessages }"
       @input="$emit('update:modelValue', $event.target.value)"
+      v-mask="selectedMask"
     />
     <p>{{ errorMessages }}</p>
   </div>
